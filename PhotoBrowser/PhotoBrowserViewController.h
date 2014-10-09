@@ -20,7 +20,6 @@
 @property (assign,nonatomic) NSInteger currentIndex;
 @property (strong,nonatomic) NSArray *photoList;
 @property (weak,nonatomic) id<PhotoBrowserViewControllerDelegate>delegate;
-//@property (strong,nonatomic) PhotoBrowserView *photoBrowserView;
 
 - (void)showPhotoBrowserViewWithFrame:(CGRect)frame;
 

@@ -33,16 +33,11 @@
 }
 - (void)layoutSubviews
 {
-//    NSLog(@"layoutSUbview");
-    //wrong
-//    _imgView.frame = self.frame;
     _imgView.frame = self.bounds;
-//    NSLog(@"%@",NSStringFromCGRect(_imgView.frame));
+
     NSString *str = _textLabel.text;
     CGFloat W = self.frame.size.width;
     CGFloat H = self.frame.size.height;
-//    CGSize MaxSize = CGSizeMake(W, 20);
-    
     CGRect rect = [str boundingRectWithSize:self.frame.size options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:kTextFount} context:Nil];
     CGFloat textW = rect.size.width;
     CGFloat textH = rect.size.height;

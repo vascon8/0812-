@@ -27,14 +27,10 @@
 {
     return 1;
 }
-//- (NSInteger)numberOfColumnInWaterFlowView:(WaterFLowView *)waterFlowView
-//{
-//    return 3;
-//}
+
 - (WaterFlowViewCell *)waterFlowView:(WaterFLowView *)waterFlowView waterFlowViewCellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *WaterFlowViewCellID = @"WaterFlowViewCell";
-#warning need update
     WaterFlowViewCell *cell = [waterFlowView dequeueReuseableCellWithIdentifier:WaterFlowViewCellID];
     return cell;
 }

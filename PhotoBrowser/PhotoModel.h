@@ -19,5 +19,4 @@
 @property (strong,nonatomic) UIImage *image;
 
 + (PhotoModel *)photoModelWithDict:(NSDictionary *)dict;
-//+ (PhotoModel *)photoModelWithSrcFrame:(CGRect)srcFrame imgUrl:(NSURL *)imgURl index:(NSInteger)index;
 @end

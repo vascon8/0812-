@@ -10,9 +10,7 @@
 #import "UIImageView+WebCache.h"
 
 @interface PhotoBrowserView ()
-//{
-//    UIImageView *_imgView;
-//}
+
 @end
 
 
@@ -52,10 +50,6 @@
             [pView adjustFrame];
         }];
     }
-//    [_imgView setImageWithURL:photoModel.img];
-    
-//    
-//    NSLog(@"%@ %@",NSStringFromCGRect(_imgView.frame),NSStringFromCGSize(_imgView.image.size));
 }
 - (void)adjustFrame
 {
@@ -80,25 +74,13 @@
     {
         self.contentSize = CGSizeMake(viewW, imgH);
     }
-//    NSLog(@"%@",NSStringFromCGRect(_imgView.frame));
     
     if (self.isAnimation) {
         
         [self.delegate photoBrowserView:self animationShowWithFrame:tempFrame];
-        
-//        [_imgView setFrame:self.photoModel.srcFrame];
-//        self.backgroundColor = [UIColor clearColor];
-//        [UIView animateWithDuration:0.4f animations:^{
-//            _imgView.frame = tempFrame;
-//            self.backgroundColor = [UIColor lightGrayColor];
-//        }];
     }
     else{
         _imgView.frame = tempFrame;
-//        self.backgroundColor = [UIColor lightGrayColor];
     }
-
-    
-
 }
 @end

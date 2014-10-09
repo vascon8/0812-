@@ -12,7 +12,6 @@
 
 @interface WaterFLowView ()
 {
-//    NSMutableArray *_cellFrames;
     NSMutableArray *_indexPaths;
     
     CGFloat cellY[10];
@@ -27,16 +26,6 @@
 
 @implementation WaterFLowView
 
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-////        self.backgroundColor = [UIColor lightGrayColor];
-//    }
-//    
-//    return self;
-//}
-
 #pragma mark - setFrame
 - (void)setCellFrameWithIndexPaths:(NSArray *)indexPaths
 {
@@ -47,7 +36,6 @@
     {
         NSInteger col = indexPath.row%self.columns;
         CGFloat H = [self.delegate heightForRowAtIndexPath:indexPath];
-//        CGFloat W = kWaterFlowViewCellWidth;
         CGFloat X = col*(W+kCellMargin)+kCellMargin;
         CGFloat Y = cellY[col];
         CGRect frame = CGRectMake(X, Y, W, H);
@@ -86,7 +74,7 @@
             }
         }
         
-    }NSLog(@"subVIews:%d,reuseSet:%d",self.subviews.count,_reuseableCellSet.count);
+    }
 }
 - (BOOL)isCellVisible:(CGRect)frame
 {
@@ -98,11 +86,12 @@
     [self loadCell];
     
     if (self.contentOffset.y+self.frame.size.height+200>self.contentSize.height) {
-        [self.dataSource refreshData];
-        [self appendCellFrame];
-        [self appendCellWillLoad];
+        if ([self.dataSource respondsToSelector:@selector(refreshData)]) {
+            [self.dataSource refreshData];
+            [self appendCellFrame];
+            [self appendCellWillLoad];
+        }
     }
-    
 }
 #pragma mark - append data
 - (void)appendCellFrame
@@ -125,7 +114,6 @@
 }
 - (void)appendCellWillLoad
 {
-
     for (NSIndexPath *indexPath in _tempIndexPaths) {
         CGRect frame = [_cellFrames[indexPath.row]CGRectValue];
         WaterFlowViewCell *cell = _visibleCellDict[indexPath];
@@ -189,7 +177,6 @@
         _visibleCellDict = [NSMutableDictionary dictionary];
     }
     else{
-#warning removeSUbviews
         [_visibleCellDict enumerateKeysAndObjectsUsingBlock:^(id key, WaterFlowViewCell *cell, BOOL *stop) {
             [cell removeFromSuperview];
             [_reuseableCellSet addObject:cell];
@@ -207,20 +194,17 @@
 - (WaterFlowViewCell *)dequeueReuseableCellWithIdentifier:(NSString *)reuseidentifier
 {
 #warning need update
-    static int w=1;
     WaterFlowViewCell *cell = [_reuseableCellSet anyObject];
     if (cell) {
         [_reuseableCellSet removeObject:cell];
     }
     else{
         cell = [[WaterFlowViewCell alloc]initWithReuseIdentifier:reuseidentifier];
-        NSLog(@"alloc cellfor row--------%d,subVIews:%d",w++,self.subviews.count);
     }
     
     return cell;
 }
 #pragma mark - piravate method
-#warning variable would be better
 - (NSInteger)rows
 {
     _rows = [self.dataSource waterFlowView:self numberOfRowsInSection:0];

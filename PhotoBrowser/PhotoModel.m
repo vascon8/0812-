@@ -15,14 +15,7 @@
     [p setValuesForKeysWithDictionary:dict];
     return p;
 }
-//+(PhotoModel *)photoModelWithSrcFrame:(CGRect)srcFrame imgUrl:(NSURL *)imgURl index:(NSInteger)index
-//{
-//    PhotoModel *p = [[PhotoModel alloc]init];
-//    p.imgUrl = imgURl;
-//    p.srcFrame = srcFrame;
-//    p.index = index;
-//    return p;
-//}
+
 
 #pragma mark - private method
 - (NSString *)description
